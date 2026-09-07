@@ -1,11 +1,315 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>GENBI342</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GENBI｜厳美渓を、目的地から旅の入口へ。</title>
+<meta name="description" content="厳美渓から国道342号を通って須川へ。温泉、グルメ、絶景、寄り道。次に行きたくなる厳美を案内するGENBI(仮称) Phase 1 BETA。">
+<link rel="canonical" href="https://genbi342.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GENBI｜厳美渓を、目的地から旅の入口へ。">
+<meta property="og:description" content="厳美渓から国道342号を通って須川へ。次に行きたくなる厳美を案内します。">
+<meta property="og:image" content="/assets/og/ogp.jpg">
+<meta property="og:url" content="https://genbi342.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:,">
 </head>
 <body>
-    <h1>GENBI342 プロジェクト（ベータ版）</h1>
-    <p>厳美渓〜国道342号〜須川温泉エリアの観光・ドライブ情報サイト</p>
+
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<div class="beta-banner">GENBI は現在 BETA 版です。情報は順次拡充中。情報提供も歓迎しています。</div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="#top" class="logo">GENBI<span class="beta">BETA</span></a>
+    <nav class="main-nav">
+      <a href="#map">MAP</a>
+      <a href="#spots">SPOTS</a>
+      <a href="#routes">ROUTES</a>
+      <a href="#access">ACCESS</a>
+      <a href="about/">ABOUT</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="メニューを開く" aria-expanded="false">☰</button>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#map">地図から探す / MAP</a>
+  <a href="#photospots">映えスポット / PHOTO SPOTS</a>
+  <a href="#spots">スポット / SPOTS</a>
+  <a href="#time">TIME</a>
+  <a href="#routes">モデルコース / ROUTES</a>
+  <a href="#access">交通 / ACCESS</a>
+  <a href="#withdog">愛犬と厳美 / WITH DOG</a>
+  <a href="about/">ABOUT</a>
+</nav>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-note">Phase 1 BETA</div>
+    <video autoplay muted loop playsinline id="heroVideo" poster="assets/images/hero-poster.jpg" style="display:none;">
+      <source src="assets/videos/hero-genbikei.mp4" type="video/mp4">
+    </video>
+    <div class="hero-poster" id="heroFallback" aria-hidden="true"></div>
+    <div class="hero-content wrap">
+      <p class="hero-brand">GENBI</p>
+      <p class="hero-copy">厳美渓を、目的地から旅の入口へ。</p>
+      <p class="hero-sub">厳美渓から国道342号を通って須川へ。温泉、グルメ、絶景、寄り道。<br>次に行きたくなる厳美を案内します。</p>
+      <div class="hero-cta">
+        <a href="#map" class="btn btn-primary">地図から探す / MAP</a>
+        <a href="#routes" class="btn btn-ghost">おすすめコース / ROUTES</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO SPOTS -->
+  <section id="photospots">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow en">PHOTO SPOTS</span>
+        <h2 class="section-title">映えスポット</h2>
+        <p class="section-desc">SNSで共有したくなる厳美の景色を発見しよう。撮影ポイントやベストタイムを掲載しています。</p>
+      </div>
+    </div>
+    <div class="hscroll" id="photoSpotScroll">
+      <!-- injected by script.js -->
+    </div>
+  </section>
+
+  <div class="photo-break">
+    <div class="caption">厳美渓 — エメラルドグリーンの水流と奇岩がつくる渓谷美 <span style="opacity:.7">(写真素材: 準備中)</span></div>
+  </div>
+
+  <!-- MAP / SPOTS -->
+  <section class="bg-mist" id="map">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow en">MAP / SPOTS</span>
+        <h2 class="section-title">次はどこへ行く？</h2>
+        <p class="section-desc">エリア・カテゴリーから、行きたい場所をすぐに見つけられます。</p>
+      </div>
+      <div class="filters" id="areaFilters">
+        <button class="filter-btn active" data-area="all">すべて</button>
+        <button class="filter-btn" data-area="genbikei">厳美渓</button>
+        <button class="filter-btn" data-area="middle342">342ミドル</button>
+        <button class="filter-btn" data-area="sukawa">須川</button>
+      </div>
+      <div class="filters" id="catFilters">
+        <button class="filter-btn active" data-cat="all">全カテゴリー</button>
+        <button class="filter-btn" data-cat="sight">見る</button>
+        <button class="filter-btn" data-cat="food">食べる</button>
+        <button class="filter-btn" data-cat="onsen">温泉</button>
+        <button class="filter-btn" data-cat="experience">体験</button>
+      </div>
+      <div id="spots" class="spot-grid"></div>
+    </div>
+  </section>
+
+  <!-- TIME -->
+  <section id="time">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow en">TIME</span>
+        <h2 class="section-title">どのくらいで行ける？</h2>
+      </div>
+      <div class="time-chain">
+        <div class="time-node">
+          <div class="time-col"><div class="dot"></div><div class="line"></div></div>
+          <div>
+            <div class="label">一関IC</div>
+            <div style="height:8px"></div>
+            <div class="dur">車 約8分</div>
+            <div class="label">厳美渓</div>
+          </div>
+        </div>
+        <div class="time-node">
+          <div class="time-col"><div class="dot"></div><div class="line"></div></div>
+          <div>
+            <div class="dur">車 約72分</div>
+            <div class="label">須川高原温泉・須川温泉 栗駒山荘</div>
+          </div>
+        </div>
+      </div>
+      <div class="notice-box">所要時間は交通・道路・天候等により変動します。数値は一関市観光協会「いち旅」等の公式情報を基に掲載しています(2026-09-07確認)。</div>
+    </div>
+  </section>
+
+  <div class="photo-break">
+    <div class="caption">国道342号 — 厳美渓から須川へと続くドライブロード <span style="opacity:.7">(写真素材: 準備中)</span></div>
+  </div>
+
+  <!-- ROUTES -->
+  <section class="bg-mist" id="routes">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow en">ROUTES</span>
+        <h2 class="section-title">おすすめモデルコース</h2>
+      </div>
+      <div id="routeList"></div>
+    </div>
+  </section>
+
+  <!-- ACCESS -->
+  <section id="access">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow en">ACCESS</span>
+        <h2 class="section-title">厳美へ行く</h2>
+      </div>
+
+      <div class="access-block">
+        <h3>🚗 CAR / 車</h3>
+        <ul>
+          <li>東北自動車道 一関IC → 国道342号 経由 約5km・8分(厳美渓まで)</li>
+          <li>仙台方面からは東北道で一関ICへ</li>
+          <li>盛岡方面からも東北道で一関ICへ</li>
+          <li>須川方面は一関ICから国道342号経由 約46km・80分</li>
+          <li>駐車場: 厳美渓周辺に市営無料駐車場・有料駐車場あり</li>
+        </ul>
+      </div>
+
+      <div class="access-block">
+        <h3>🚌 TRAIN + BUS / 電車・バス</h3>
+        <ul>
+          <li>JR一ノ関駅 → 岩手県交通バス「厳美渓線」 約20分 → 徒歩1分</li>
+          <li>須川方面: JR一関駅 → 岩手県交通バス「須川温泉線」 → 徒歩5分</li>
+        </ul>
+      </div>
+
+      <div class="access-block">
+        <h3>🚄 SENDAI / 仙台から</h3>
+        <ul>
+          <li>仙台駅からJRまたは高速バスで一ノ関駅・一関駅へ</li>
+          <li>一ノ関駅からは上記バス「厳美渓線」等に乗り継ぎ</li>
+        </ul>
+      </div>
+
+      <div class="access-block">
+        <h3>🚕 TAXI / タクシー</h3>
+        <ul>
+          <li>JR一ノ関駅等からの利用が可能です</li>
+          <li>料金は変動するため、乗車前にご確認ください(未確認情報のため掲載していません)</li>
+        </ul>
+      </div>
+
+      <div class="access-block">
+        <h3>🚴 BICYCLE / サイクリング</h3>
+        <ul>
+          <li>国道342号は交通量・道路状況の変化があるため、走行時は十分注意してください</li>
+          <li>距離・高低差・休憩場所等の詳細情報は準備中です(data pending)</li>
+        </ul>
+      </div>
+
+      <div class="notice-box">
+        バス時刻・運賃・道路規制等は変動します。最新情報は交通事業者・自治体等の公式情報をご確認ください。<br>
+        参考: <a href="https://www.ichitabi.jp/" target="_blank" rel="noopener">いち旅(一関市観光協会)</a> /
+        <a href="https://www.iwatekenkotsu.co.jp/" target="_blank" rel="noopener">岩手県交通</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="photo-break">
+    <div class="caption">須川高原 — 標高1,100mの雲上の温泉地 <span style="opacity:.7">(写真素材: 準備中)</span></div>
+  </div>
+
+  <!-- WITH DOG -->
+  <section class="bg-mist" id="withdog">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow en">WITH DOG</span>
+        <h2 class="section-title">愛犬と厳美</h2>
+        <p class="section-desc">「ペット可」等の情報は確認済みのもののみ掲載しています。</p>
+      </div>
+      <div class="info-list">
+        <div class="info-item">
+          <div class="title">厳美渓 散策路</div>
+          屋外の遊歩道はリード同伴で歩けます。施設内(店舗等)への同伴可否は個別にご確認ください。
+        </div>
+        <div class="info-item">
+          <div class="title">情報拡充中</div>
+          ペット同伴可能な施設・カフェ・休憩場所の情報は現在収集中です(data pending)。情報をお持ちの方はぜひご提供ください。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARKING / WALK -->
+  <section id="parking">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow en">PARKING / WALK</span>
+        <h2 class="section-title">駐車場と散歩コース</h2>
+      </div>
+      <div class="info-list">
+        <div class="info-item">
+          <div class="title">厳美渓 市営駐車場</div>
+          無料。厳美渓散策路・郭公だんご店まで徒歩圏内。
+        </div>
+        <div class="info-item">
+          <div class="title">道の駅 厳美渓 駐車場</div>
+          無料。一関市博物館・レストラン利用に便利。
+        </div>
+        <div class="info-item">
+          <div class="title">厳美渓 散策路(WALK)</div>
+          下流コース 約30分 / 上流コース 約70分。奇岩・甌穴・滝など渓谷美を楽しめます。トイレ・ベンチは道の駅周辺にあり。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO CONTRIBUTION -->
+  <section class="bg-mist">
+    <div class="wrap">
+      <div class="contrib">
+        <h2>あなたの厳美を、GENBIに。</h2>
+        <span class="en">Share Your GENBI</span>
+        <p>撮影した写真・動画がGENBIに掲載されるかもしれません。採用時はご希望に応じてハンドルネームを掲載します(本名・住所・電話番号等は公開しません)。</p>
+        <a href="contact/" class="btn btn-primary">写真・動画を提供する</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT (excerpt) -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow en">ABOUT</span>
+        <h2 class="section-title">GENBIについて</h2>
+      </div>
+      <div class="about-box">
+        <p>GENBIは、岩手県一関市厳美町の厳美渓を起点に、国道342号を通って須川温泉・須川岳方面までを案内する、個人運営・非営利の観光メディアです。広告や支援金は受け取っていません。</p>
+        <p>詳しくは<a href="about/">ABOUTページ</a>をご覧ください。</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="flinks">
+      <a href="about/">ABOUT</a>
+      <a href="policy/">運営ポリシー</a>
+      <a href="privacy/">プライバシーポリシー</a>
+      <a href="disclaimer/">免責事項</a>
+      <a href="contact/">お問い合わせ</a>
+      <a href="correction/">情報訂正・削除依頼</a>
+    </div>
+    <div class="fbottom">
+      GENBI342運営事務局 / 個人による独立運営・非営利 / GENBI Phase 1 BETA<br>
+      本サイトの情報は変更される場合があります。最新情報は各施設・自治体等の公式情報をご確認ください。
+    </div>
+  </div>
+</footer>
+
+<div class="spot-detail" id="spotDetail" role="dialog" aria-modal="true">
+  <div class="spot-detail-sheet" id="spotDetailBody"></div>
+</div>
+
+<script src="data/spots.js"></script>
+<script src="data/routes.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
