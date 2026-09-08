@@ -97,7 +97,7 @@ nav.main-nav { display: none; }
   color: #fff;
   background: linear-gradient(160deg, var(--color-water-deep), var(--color-forest));
 }
-.hero video, .hero .hero-poster {
+.hero video, .hero img.hero-poster {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -117,16 +117,18 @@ nav.main-nav { display: none; }
   width: 100%;
 }
 .hero-brand {
-  font-size: 2.6rem;
+  font-size: 3.4rem;
   font-weight: 800;
-  letter-spacing: 0.05em;
-  margin: 0 0 8px;
+  letter-spacing: 0.02em;
+  margin: 0 0 6px;
+  line-height: 1;
 }
 .hero-copy {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 800;
   margin: 0 0 14px;
-  line-height: 1.5;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
 }
 .hero-sub {
   font-size: 0.92rem;
@@ -225,12 +227,19 @@ h2.section-title {
 }
 .photo-card .thumb {
   aspect-ratio: 4/5;
+  overflow: hidden;
+}
+.photo-card .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.thumb-placeholder {
+  width: 100%;
+  height: 100%;
   background: linear-gradient(160deg, #d6e9e0, #9fc9b8);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #4b6b5d;
   font-size: 0.75rem;
+  text-align: center;
 }
 .photo-card .body { padding: 14px 16px 18px; }
 .photo-card h3 { margin: 0 0 6px; font-size: 1rem; }
@@ -263,12 +272,12 @@ h2.section-title {
 }
 .spot-card .thumb {
   aspect-ratio: 16/10;
+  overflow: hidden;
+}
+.spot-card .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.spot-card .thumb .thumb-placeholder {
   background: linear-gradient(160deg, #e4efe9, #bcd9cc);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: #5a7a6b;
-  font-size: 0.75rem;
 }
 .spot-card .body { padding: 16px; }
 .spot-card h3 { margin: 0 0 4px; font-size: 1.05rem; }
@@ -441,6 +450,13 @@ footer.site-footer .fbottom { opacity: 0.6; font-size: 0.75rem; border-top: 1px 
   width: 34px; height: 34px;
   font-size: 1.1rem;
   cursor: pointer;
+}
+.detail-image {
+  width: calc(100% + 40px);
+  margin: -24px -20px 16px;
+  max-height: 240px;
+  object-fit: cover;
+  border-radius: 20px 20px 0 0;
 }
 .spot-detail-sheet h3 { margin: 4px 0 4px; font-size: 1.3rem; }
 .spot-detail-sheet .unofficial-note {

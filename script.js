@@ -23,6 +23,12 @@ const PHOTO_SPOT_EXTRA = {
   "spot-007": { bestTime: "午後", season: "夏〜初秋(冬期休業)" }
 };
 
+function thumbHtml(spot) {
+  return spot.image
+    ? `<img src="${spot.image}" alt="${spot.name}" loading="lazy">`
+    : `<div class="thumb-placeholder">写真準備中<br>Photo pending</div>`;
+}
+
 function $(sel, ctx) { return (ctx || document).querySelector(sel); }
 function $all(sel, ctx) { return Array.from((ctx || document).querySelectorAll(sel)); }
 
@@ -72,7 +78,7 @@ function renderPhotoSpots() {
     const extra = PHOTO_SPOT_EXTRA[spot.id] || {};
     return `
       <div class="photo-card">
-        <div class="thumb">写真準備中<br>Photo pending</div>
+        <div class="thumb">${thumbHtml(spot)}</div>
         <div class="body">
           <h3>${spot.name}</h3>
           <div class="meta">
@@ -103,7 +109,7 @@ function renderSpots() {
   }
   el.innerHTML = filtered.map(spot => `
     <a class="spot-card" href="#" data-spot-id="${spot.id}">
-      <div class="thumb">写真準備中<br>Photo pending</div>
+      <div class="thumb">${thumbHtml(spot)}</div>
       <div class="body">
         <div class="cat">${CATEGORY_LABEL[spot.category] || spot.category} ・ ${AREA_LABEL[spot.area] || spot.area}</div>
         <h3>${spot.name}</h3>
@@ -139,6 +145,7 @@ function openSpotDetail(id) {
 
   body.innerHTML = `
     <button class="spot-detail-close" id="spotDetailClose" aria-label="閉じる">✕</button>
+    ${spot.image ? `<img class="detail-image" src="${spot.image}" alt="${spot.name}" loading="lazy">` : ""}
     <div class="cat">${CATEGORY_LABEL[spot.category] || spot.category} ・ ${AREA_LABEL[spot.area] || spot.area}</div>
     <h3>${spot.name}</h3>
     ${spot.unofficialGuide ? `<div class="unofficial-note">このページはGENBIが独自にまとめた案内情報です。店舗・施設の公式ページではありません。</div>` : ""}

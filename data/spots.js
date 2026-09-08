@@ -23,7 +23,8 @@ const SPOTS = [
     source: "一関市観光協会「いち旅」",
     verifiedAt: "2026-09-07",
     unofficialGuide: false,
-    image: "",
+    image: "assets/images/spot-001-1.jpg",
+    images: ["assets/images/spot-001-1.jpg", "assets/images/spot-001-2.jpg"],
     dogFriendly: "屋外散策路は同伴可能な場合が多いですが施設により異なります(要確認)",
     walkTime: "下流コース 約30分 / 上流コース 約70分"
   },
@@ -49,7 +50,7 @@ const SPOTS = [
     source: "一関市観光協会「いち旅」",
     verifiedAt: "2026-09-07",
     unofficialGuide: false,
-    image: ""
+    image: "assets/images/spot-002-1.jpg"
   },
   {
     id: "spot-003",
